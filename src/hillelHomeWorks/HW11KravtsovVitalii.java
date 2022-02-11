@@ -41,14 +41,6 @@ public class HW11KravtsovVitalii {
     }
 }
 
-enum Material {
-    WOOD, PAPER, IRON
-}
-
-enum Color {
-    WHITE, BLACK, RED, BROWN
-}
-
 class Box {
     protected double width, height, length;
     protected Material material;
