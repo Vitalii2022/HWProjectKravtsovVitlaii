@@ -9,45 +9,61 @@ public class HW12KravtsoVitalii {
 
     public static void main(String[] args) {
 
-        NewBox nb = new NewBox(2, 3, 4, "white", "paper");
-        System.out.println("\nVolume: " + nb.getVolume() + "\nColor: " + nb.getColor() + "\nMaterial: " + nb.getMaterial());
+        try {
 
-        nb.setWidth(5);
-        nb.setHeight(6);
-        nb.setLength(7);
-        nb.setColor("red");
-        nb.setMaterial("wood");
-        System.out.println("\nVolume: " + nb.getVolume() +  "\nColor: " + nb.getColor() + "\nMaterial: " + nb.getMaterial());
+            ColorBox cb = new ColorBox(2, 3, 4, Material.PAPER, Color.BLACK);
+            System.out.println("\nVolume: " + cb.getVolume() + "\nColor: " + cb.getColor() + "\nMaterial: " + cb.getMaterial());
+            System.out.println(cb);
+
+            cb.setWidth(5);
+            cb.setHeight(6);
+            cb.setLength(7);
+            cb.setColor(Color.RED);
+            cb.setMaterial(Material.WOOD);
+            System.out.println("\nVolume: " + cb.getVolume() +  "\nColor: " + cb.getColor() + "\nMaterial: " + cb.getMaterial());
+            System.out.println(cb);
+
+            cb = new ColorBox(2, -3, 4, Material.PAPER, Color.BLACK);
+            System.out.println(cb);
+
+        } catch (IllegalArgumentException ex) {
+            System.out.println("\n" + ex.getMessage());
+        }
+
     }
 }
 
-class NewBox extends Box {
 
-    private String color, material;
+class ColorBox extends Box {
 
-    public NewBox(double newWidth, double newHeight, double newLengt) {
-        super(newWidth, newHeight, newLengt);
+    private Color color;
+
+    public ColorBox(double newWidth, double newHeight, double newLengt, Material newMaterial) {
+        super(newWidth, newHeight, newLengt, newMaterial);
     }
 
-    public NewBox(double newWidth, double newHeight, double newLength, String newColor, String newMaterial) {
-        super(newWidth, newHeight, newLength);
+    public ColorBox(double newWidth, double newHeight, double newLength, Material newMaterial, Color newColor) {
+        super(newWidth, newHeight, newLength, newMaterial);
         color = newColor;
-        material = newMaterial;
     }
 
     public double getWidth() {
         return width;
     }
+
     public double getHeight() {
         return height;
     }
+
     public double getLength() {
         return length;
     }
-    public String getColor() {
+
+    public Color getColor() {
         return color;
     }
-    public String getMaterial() {
+
+    public Material getMaterial() {
         return material;
     }
 
@@ -58,6 +74,7 @@ class NewBox extends Box {
             System.out.println("newWidth must be positive");
         }
     }
+
     public void setHeight(double newHeight) {
         if (newHeight > 0) {
             height = newHeight;
@@ -65,6 +82,7 @@ class NewBox extends Box {
             System.out.println("newHeight must be positive");
         }
     }
+
     public void setLength(double newLength) {
         if (newLength > 0) {
             length = newLength;
@@ -72,10 +90,18 @@ class NewBox extends Box {
             System.out.println("newLength must be positive");
         }
     }
-    public void setColor(String newColor) {
-        color = newColor;
-    }
-    public void setMaterial(String newMaterial) {
+
+    public void setMaterial(Material newMaterial) {
         material = newMaterial;
     }
+
+    public void setColor(Color newColor) {
+        color = newColor;
+    }
+
+    @Override
+    public String toString() {
+        return "ColorBox: [" + "width: " + width + " height: " + height + " length: " + length + " material: " + material + " color: " + color + "]";
+    }
+
 }
